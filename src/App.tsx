@@ -802,7 +802,7 @@ export default function App() {
   const [saveToast, setSaveToast] = useState(false);
   const [shareLink, setShareLink] = useState<string | null>(null);
   const [theme, setTheme] = useLocalStorage<'dark' | 'light'>('theme', 'dark');
-  const saveTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | undefined>(undefined);
 
   const analysis = useMemo(() => buildAnalysis(form), [form]);
   const report = useMemo(() => buildReportData(form, analysis, tone), [form, analysis, tone]);
