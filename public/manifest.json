@@ -1,0 +1,16 @@
+{
+  "name": "Solar Quote Sanity Check",
+  "short_name": "Solar Quote",
+  "description": "Paste your solar quote. Instantly see the hidden markup, finance traps, and red flags before you sign.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050b17",
+  "theme_color": "#22d3ee",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    }
+  ]
+}

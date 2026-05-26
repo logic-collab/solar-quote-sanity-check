@@ -1,111 +1,153 @@
-:root {
-  --text: #6b6375;
-  --text-h: #08060d;
-  --bg: #fff;
-  --border: #e5e4e7;
-  --code-bg: #f4f3ec;
-  --accent: #aa3bff;
-  --accent-bg: rgba(170, 59, 255, 0.1);
-  --accent-border: rgba(170, 59, 255, 0.5);
-  --social-bg: rgba(244, 243, 236, 0.5);
-  --shadow:
-    rgba(0, 0, 0, 0.1) 0 10px 15px -3px, rgba(0, 0, 0, 0.05) 0 4px 6px -2px;
+@import "tailwindcss";
 
-  --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --heading: system-ui, 'Segoe UI', Roboto, sans-serif;
-  --mono: ui-monospace, Consolas, monospace;
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --color-brand-50: #ecfeff;
+  --color-brand-100: #cffafe;
+  --color-brand-200: #a5f3fc;
+  --color-brand-300: #67e8f9;
+  --color-brand-400: #22d3ee;
+  --color-brand-500: #06b6d4;
+  --color-brand-600: #0891b2;
+  --color-brand-700: #0e7490;
+  --color-brand-800: #155e75;
+  --color-brand-900: #164e63;
+}
 
-  font: 18px/145% var(--sans);
-  letter-spacing: 0.18px;
-  color-scheme: light dark;
-  color: var(--text);
-  background: var(--bg);
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 
-  @media (max-width: 1024px) {
-    font-size: 16px;
+  body {
+    background-color: #020617;
+    color: #e2e8f0;
+    font-family: var(--font-sans);
+    transition: filter 0.3s ease, background-color 0.3s ease;
+  }
+
+  html.light-mode body {
+    background-color: #f8fafc;
+    filter: invert(1) hue-rotate(180deg);
+  }
+  html.light-mode img,
+  html.light-mode video,
+  html.light-mode .recharts-wrapper,
+  html.light-mode canvas {
+    filter: invert(1) hue-rotate(180deg);
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes drift {
+    0% { transform: translate(0, 0) scale(1); }
+    50% { transform: translate(30px, -30px) scale(1.1); }
+    100% { transform: translate(0, 0) scale(1); }
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .bg-drift {
+    animation: drift 20s ease-in-out infinite;
+  }
+
+  .animate-blink {
+    animation: blink 1s step-end infinite;
+  }
+
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+    background-size: 60px 60px;
+  }
+
+  .bg-glow {
+    background: radial-gradient(ellipse 80% 50% at 50% -20%, rgba(34, 211, 238, 0.08), transparent);
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --text: #9ca3af;
-    --text-h: #f3f4f6;
-    --bg: #16171d;
-    --border: #2e303a;
-    --code-bg: #1f2028;
-    --accent: #c084fc;
-    --accent-bg: rgba(192, 132, 252, 0.15);
-    --accent-border: rgba(192, 132, 252, 0.5);
-    --social-bg: rgba(47, 48, 58, 0.5);
-    --shadow:
-      rgba(0, 0, 0, 0.4) 0 10px 15px -3px, rgba(0, 0, 0, 0.25) 0 4px 6px -2px;
+@layer components {
+  .page-shell {
+    @apply relative min-h-screen overflow-x-hidden;
   }
 
-  #social .button-icon {
-    filter: invert(1) brightness(2);
+  .page-container {
+    @apply mx-auto max-w-7xl px-4 sm:px-6 lg:px-8;
   }
-}
 
-#root {
-  width: 1126px;
-  max-width: 100%;
-  margin: 0 auto;
-  text-align: center;
-  border-inline: 1px solid var(--border);
-  min-height: 100svh;
-  display: flex;
-  flex-direction: column;
-  box-sizing: border-box;
-}
-
-body {
-  margin: 0;
-}
-
-h1,
-h2 {
-  font-family: var(--heading);
-  font-weight: 500;
-  color: var(--text-h);
-}
-
-h1 {
-  font-size: 56px;
-  letter-spacing: -1.68px;
-  margin: 32px 0;
-  @media (max-width: 1024px) {
-    font-size: 36px;
-    margin: 20px 0;
+  .panel {
+    @apply rounded-4xl border border-white/10 bg-white/3 p-6 backdrop-blur-xl;
   }
-}
-h2 {
-  font-size: 24px;
-  line-height: 118%;
-  letter-spacing: -0.24px;
-  margin: 0 0 8px;
-  @media (max-width: 1024px) {
-    font-size: 20px;
+
+  .panel-strong {
+    @apply rounded-4xl border border-white/15 bg-white/5 p-6 backdrop-blur-xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)];
   }
-}
-p {
-  margin: 0;
-}
 
-code,
-.counter {
-  font-family: var(--mono);
-  display: inline-flex;
-  border-radius: 4px;
-  color: var(--text-h);
-}
+  .kicker {
+    @apply text-[10px] uppercase tracking-[0.35em] font-bold text-slate-500;
+  }
 
-code {
-  font-size: 15px;
-  line-height: 135%;
-  padding: 4px 8px;
-  background: var(--code-bg);
+  .section-copy {
+    @apply text-sm leading-7 text-slate-400;
+  }
+
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-cyan-300 px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-[0_0_30px_rgba(34,211,238,0.2)] active:translate-y-0 cursor-pointer;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border border-white/12 bg-white/5 px-5 py-2.5 text-sm font-semibold text-slate-100 transition hover:border-white/20 hover:bg-white/10 cursor-pointer;
+  }
+
+  .btn-mega {
+    @apply inline-flex items-center justify-center rounded-full bg-cyan-300 px-8 py-4 text-lg font-bold text-slate-950 transition hover:-translate-y-0.5 hover:bg-cyan-200 hover:shadow-[0_0_40px_rgba(34,211,238,0.3)] active:translate-y-0 cursor-pointer;
+  }
+
+  .field-input {
+    @apply w-full rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm text-slate-100 outline-none transition placeholder:text-slate-500 focus:border-cyan-400/60 focus:ring-4 focus:ring-cyan-400/10;
+  }
+
+  .field-input-error {
+    @apply border-rose-400/60 focus:border-rose-400/60 focus:ring-rose-400/10;
+  }
+
+  @media print {
+    .no-print {
+      display: none !important;
+    }
+    .page-shell {
+      background: white !important;
+      color: black !important;
+      filter: none !important;
+    }
+    .panel, .panel-strong {
+      border: 1px solid #e5e7eb !important;
+      background: white !important;
+      backdrop-filter: none !important;
+      box-shadow: none !important;
+    }
+  }
 }
