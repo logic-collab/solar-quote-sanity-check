@@ -1,73 +1,87 @@
-# React + TypeScript + Vite
+# Solar Quote Sanity Check — Forensic Solar Quote Analysis
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+> Interactive tool that helps homeowners analyze, compare, and verify solar installation quotes — catching hidden costs and inflated pricing before signing.
 
-Currently, two official plugins are available:
+**Stack:** React · TypeScript · Vite · Tailwind CSS
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+**Status:** Active development
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Overview
 
-## Expanding the ESLint configuration
+Solar installers have a massive information advantage over homeowners. The Solar Quote Sanity Check closes that gap. Enter details from one or multiple solar quotes, and the tool analyzes pricing, equipment, financing terms, and installation line items — flagging anything that doesn't add up.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Key Features
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### 🔍 Quote Forensic Analysis
+Upload or enter quote details and the tool scans for:
+- Inflated equipment pricing vs. market rates
+- Unnecessary panel upgrades
+- Hidden financing fees and dealer fees
+- Overpriced labor line items
+- Missing warranty details
+- Lease vs. buy cost comparisons over 25 years
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+### 📊 Multi-Quote Comparison
+Side-by-side comparison of up to 5 quotes with:
+- Per-watt pricing breakdown
+- Equipment quality scoring
+- Installer reputation cross-reference
+- Total 25-year cost projection
+
+### 📈 Payback Period Calculator
+Real payback calculation using:
+- Your actual utility rate (not national averages)
+- Local net metering policies
+- Degradation rates
+- Electricity inflation projections
+- Available tax credits and incentives
+
+### ⚠️ Red Flag Detector
+Automatically flags common solar sales tactics:
+- "Free solar" lease traps
+- Inflated utility rate projections
+- Missing production guarantees
+- Dealer fee financing that eats equity
+- "You qualify for" pressure tactics
+
+---
+
+## Tech Stack
+
+| Category | Technology |
+|---|---|
+| **Build Tool** | Vite |
+| **Language** | TypeScript |
+| **UI** | React, Tailwind CSS |
+| **Linting** | ESLint with TypeScript |
+
+---
+
+## Getting Started
+
+```bash
+# 1. Clone the repo
+git clone https://github.com/logic-collab/solar-quote-sanity-check.git
+cd solar-quote-sanity-check
+
+# 2. Install dependencies
+npm install
+
+# 3. Run development server
+npm run dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Related Repositories
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- [solarlogic](https://github.com/logic-collab/solarlogic) — Main EV & solar intelligence platform
+- [ev-command-center](https://github.com/logic-collab/ev-command-center) — Interactive EV ownership dashboard
+
+---
+
+**Built by Logic Forge · Lagos, Nigeria**
